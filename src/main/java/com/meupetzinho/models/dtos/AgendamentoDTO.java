@@ -7,17 +7,14 @@ import java.time.LocalDate;
 public class AgendamentoDTO {
     @NotNull
     private Long veterinario;
-    @NotNull
-    private Long usuarioCliente;
 
     private LocalDate dataDoAgendamento;
 
     public AgendamentoDTO() {
     }
 
-    public AgendamentoDTO(Long veterinario, Long usuarioCliente, LocalDate dataDoAgendamento) {
+    public AgendamentoDTO(Long veterinario, LocalDate dataDoAgendamento) {
         this.veterinario = veterinario;
-        this.usuarioCliente = usuarioCliente;
         this.dataDoAgendamento = dataDoAgendamento;
     }
 
@@ -27,14 +24,6 @@ public class AgendamentoDTO {
 
     public void setVeterinario(Long veterinario) {
         this.veterinario = veterinario;
-    }
-
-    public Long getUsuarioCliente() {
-        return usuarioCliente;
-    }
-
-    public void setUsuarioCliente(Long usuarioCliente) {
-        this.usuarioCliente = usuarioCliente;
     }
 
     public LocalDate getDataDoAgendamento() {
