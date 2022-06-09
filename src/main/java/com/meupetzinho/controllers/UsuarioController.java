@@ -31,14 +31,6 @@ public class UsuarioController {
         return ResponseEntity.ok(service.listar());
     }
 
-    @PostMapping
-    public ResponseEntity<Usuario> salvar(@RequestBody UsuarioDTO usuarioDTO) {
-        var usuarioSalvo = service.salvar(usuarioDTO);
-        return ResponseEntity
-                .created(linkTo(methodOn(UsuarioController.class).listarPorId(usuarioSalvo.getId())).toUri())
-                .body(usuarioSalvo);
-    }
-
     @PutMapping("/{id}")
     public ResponseEntity<Usuario> atualizar(@PathVariable Long id, @RequestBody UsuarioDTO usuarioDTO) {
         return ResponseEntity.ok(service.atualizar(id, usuarioDTO));

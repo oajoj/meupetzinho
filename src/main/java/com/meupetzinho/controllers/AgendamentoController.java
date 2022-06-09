@@ -27,6 +27,11 @@ public class AgendamentoController {
         return ResponseEntity.ok(service.listarPorId(id));
     }
 
+    @GetMapping("/meus-agendamentos")
+    public ResponseEntity<List<Agendamento>> listarPorUsuario() {
+        return ResponseEntity.ok(service.listarPorUsuario());
+    }
+
     @GetMapping
     public ResponseEntity<List<Agendamento>> listar() {
         return ResponseEntity.ok(service.listar());

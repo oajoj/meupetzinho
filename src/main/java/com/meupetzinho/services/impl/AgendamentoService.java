@@ -7,6 +7,8 @@ import com.meupetzinho.utils.PropertiesUtils;
 import com.meupetzinho.utils.mappers.AgendamentoMapper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -35,6 +37,11 @@ public class AgendamentoService {
 
     public List<Agendamento> listar() {
         return repository.findAll();
+    }
+
+    public List<Agendamento> listarPorUsuario() {
+        var usuarioAtual = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        return repository.findAgendamentoByUsuarioClienteLogin(usuarioAtual.getUsername());
     }
 
     public Agendamento salvar(AgendamentoDTO agendamentoDTO) {
