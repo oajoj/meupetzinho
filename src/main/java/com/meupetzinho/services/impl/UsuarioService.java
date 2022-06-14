@@ -31,6 +31,11 @@ public class UsuarioService {
         this.mapper = mapper;
     }
 
+    public Usuario listarPorLogin(String login){
+        return repository.findByLogin(login)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+    }
+
     public Usuario listarPorId(Long id) {
         if(id == null) return null;
         return repository.findById(id)
