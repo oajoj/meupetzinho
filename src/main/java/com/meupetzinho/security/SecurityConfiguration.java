@@ -16,7 +16,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @EnableWebSecurity
 @Configuration
-public class SecurityConfiguration extends WebSecurityConfigurerAdapter implements WebMvcConfigurer {
+public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     private final UserDetailsServiceImpl userDetailsService;
 
@@ -38,12 +38,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter implemen
                 .antMatchers("/api/auth/**").permitAll()
                 .anyRequest().authenticated();
         http.addFilterBefore(authTokenFilter(), UsernamePasswordAuthenticationFilter.class);
-    }
-
-    @Override
-    public void addCorsMappings(CorsRegistry corsRegistry){
-        corsRegistry.addMapping("/**").allowedMethods("*").allowedOrigins("*").allowedHeaders("*");
-
     }
 
     @Bean
